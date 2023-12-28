@@ -1,17 +1,24 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.contrib.auth import login as lg 
+from django.contrib.auth import authenticate
+from django.shortcuts import redirect
 
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username)
-        print(password)
+
+        usuarios = authenticate(username=username, password=password)
+        if usuarios:
+            lg(request,usuarios)
+            return redirect('index')
+        
+
     return render(request,'user/login.html',{})
 
 
-def saludo(request):
+def index(request):
     return render(request,'index.html',{
         'mensaje': 'Tienda',
         'titulo' : 'Inicio',
