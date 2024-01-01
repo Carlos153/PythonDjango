@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import logout
+from .forms import Registro
 
 
 def login(request):
@@ -42,3 +43,12 @@ def salir(request):
     logout(request)
     messages.success(request,'Sesion cerrada')
     return redirect(login)
+
+def registro(request):
+    form = Registro()
+    
+    return render(request, 'user/registro.html',{
+        'form':form
+
+    })
+
