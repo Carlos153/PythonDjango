@@ -45,7 +45,15 @@ def salir(request):
     return redirect(login)
 
 def registro(request):
-    form = Registro()
+    form = Registro(request.POST or None)
+    if request.method =='POST' and form.is_valid():
+        username = form.cleaned_data.get('username')
+        correo = form.cleaned_data.get('correo')
+        password = form.cleaned_data.get('password')
+
+        print(username)
+        print(correo)
+        print(password)
     
     return render(request, 'user/registro.html',{
         'form':form
