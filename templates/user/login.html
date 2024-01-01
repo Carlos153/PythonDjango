@@ -22,12 +22,18 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control">
                     </div>
-                    <button type="submit"class="btn btn-primary" >Login</button>
+                    <button type="submit"class="btn btn-primary">Login</button>
                         {%if messages%}
                         {%for m in messages%}
-                        <div class="alert">
+                        {%if m.tag == 'sucess'%}
+                        <div class="alert alert-success">
                             {{m}}
                         </div>
+                        {%else%}
+                        <div class="alert alert-danger">
+                            {{m}}
+                        </div>
+                        {%endif%}
                         {%endfor%}
                         {%endif%}
 

@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth import login as lg 
 from django.contrib.auth import authenticate
 from django.shortcuts import redirect
+from django.contrib import messages
+from django.contrib.auth import logout
+
 
 def login(request):
     if request.method == 'POST':
@@ -12,7 +15,10 @@ def login(request):
         usuarios = authenticate(username=username, password=password)
         if usuarios:
             lg(request,usuarios)
+            messages.success(request, f'Bienvendo {usuarios.username}')
             return redirect('index')
+        else:
+            messages.error(request,'Datos erroneos')
         
 
     return render(request,'user/login.html',{})
@@ -30,3 +36,9 @@ def index(request):
         ] 
      
     })
+
+
+def salir(request):
+    logout(request)
+    messages.success(request,'Sesion cerrada')
+    return redirect(login)
