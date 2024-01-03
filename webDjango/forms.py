@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 
 class Registro(forms.Form):
     username = forms.CharField(required=True, min_length=4, max_length=25,widget=forms.TextInput(attrs={
@@ -12,3 +13,12 @@ class Registro(forms.Form):
         'class':'form-control',
         'placeholder':'Password'
     }))
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+    
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError('Usuario ya creado ')
+    
+        return username
+    

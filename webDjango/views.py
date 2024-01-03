@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import logout
 from .forms import Registro
+from django.contrib.auth.models import User
 
 
 def login(request):
@@ -51,9 +52,11 @@ def registro(request):
         correo = form.cleaned_data.get('correo')
         password = form.cleaned_data.get('password')
 
-        print(username)
-        print(correo)
-        print(password)
+        usuario = User.objects.create_user(username,correo,password)
+        if usuario:
+            lg(request,usuario)
+            messages.success(request,f'Bienvenido {username}')
+            return redirect('index')
     
     return render(request, 'user/registro.html',{
         'form':form

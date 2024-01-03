@@ -13,7 +13,7 @@
                 <h2>Registro</h2>
                 <form method="post">
                     {% csrf_token %} 
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         {{form.username.label_tag}}
                         {{form.username}}
 
@@ -28,6 +28,19 @@
                         {{form.password}}
 
                     </div>
+                -->
+
+                {% for m in form%}
+                <div class=" form-group">
+                    {{m.label_tag}}
+                    {{m}}
+                    
+                    {%if m.errors%}
+                    {{m.errors}}
+                    {%endif%}
+
+                </div>
+                {%endfor%}
         
                 <button type="submit" class="btn btn-primary">Registro</button>
             </form>        
