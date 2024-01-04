@@ -10,6 +10,10 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                <div class="card-body">
+                
                 <h2>Registro</h2>
                 <form method="post">
                     {% csrf_token %} 
@@ -41,11 +45,13 @@
 
                 </div>
                 {%endfor%}
-        
+                <hr>
                 <button type="submit" class="btn btn-primary">Registro</button>
             </form>        
             </div>
-
+             </div>
+            </div> 
+            </div>
         </div>
 
     </div>

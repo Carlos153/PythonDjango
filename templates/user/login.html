@@ -10,7 +10,16 @@
     <div class="container">
         <div class="row">
             <div class="col">
-            
+                <div class="row">
+                        <div class="col-12 col-md-6 offset-md-3">
+                        <div class="card">
+                        <div class="card-body">
+
+                       
+
+                    
+                            
+                    
                 <h2>Login.</h2>
                 <form method="post">
                     {% csrf_token %} 
@@ -22,6 +31,7 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control">
                     </div>
+                    <hr>
                     <button type="submit"class="btn btn-primary">Login</button>
                         {%if messages%}
                         {%for m in messages%}
@@ -38,6 +48,9 @@
                         {%endif%}
 
                 </form>
+                
+            </div>
+        </div>
             </div>
 
         </div>

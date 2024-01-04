@@ -48,14 +48,12 @@ def salir(request):
 def registro(request):
     form = Registro(request.POST or None)
     if request.method =='POST' and form.is_valid():
-        username = form.cleaned_data.get('username')
-        correo = form.cleaned_data.get('correo')
-        password = form.cleaned_data.get('password')
+        
 
-        usuario = User.objects.create_user(username,correo,password)
+        usuario = form.save()
         if usuario:
             lg(request,usuario)
-            messages.success(request,f'Bienvenido {username}')
+            messages.success(request,'Bienvenido')
             return redirect('index')
     
     return render(request, 'user/registro.html',{
