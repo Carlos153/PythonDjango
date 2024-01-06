@@ -9,6 +9,7 @@ from .forms import Registro
 from django.contrib.auth.models import User
 
 
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -47,17 +48,13 @@ def salir(request):
 
 def registro(request):
     form = Registro(request.POST or None)
-    if request.method =='POST' and form.is_valid():
-        
-
+    if request.method == 'POST' and form.is_valid():
         usuario = form.save()
         if usuario:
-            lg(request,usuario)
-            messages.success(request,'Bienvenido')
+            lg(request, usuario)
+            messages.success(request, 'Bienvenido')
             return redirect('index')
-    
-    return render(request, 'user/registro.html',{
-        'form':form
 
-    })
+    return render(request, 'user/registro.html', {'form': form})
+    
 

@@ -1,58 +1,35 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>{{titulo}}</title>
-  </head>
-  <body>
-    <h1>{{mensaje}}</h1>
-    <ul class="list-group">
-      
-      {% for i in productos %}
+{% extends "base.html" %}
+{% block content %}
+
+  <h1>{{mensaje}}</h1>
+  <ul class="list-group">
     
-      <li class="list-group-item">
-        
-        {{i.titulo}}
-        <span>
-          {% if i.stock%}
-          
-          <span class="text-success">Stock disponible</span>
-          
+    {% for i in productos %}
   
-          {%else%}
-          <span class="text-bg-danger">Stock no disponible</span>
-          
-          {%endif%}
-        </span> 
+    <li class="list-group-item">
+      
+      {{i.titulo}}
+      <span>
+        {% if i.stock%}
+        
+        <span class="text-success">Stock disponible</span>
+        
+
+        {%else%}
+        <span class="text-bg-danger">Stock no disponible</span>
+        
+        {%endif%}
+      </span> 
 
 
 
-      </li>
+    </li>
 
-      {%endfor%}
-    </ul>
-    <img src="{% static '/imagenes/gorra.jpg' %}"width="80">
-
-    
-  {% if messages %}
-        {% for m in messages %}
-      {% if m.tag == 'sucess' %}
-    <div class="alert alert-success">
-        {{m}}
-    </div>
-    {%else%}
-    <div class="alert alert-danger">
-        {{m}}
-    </div>
-    {%endif%}
     {%endfor%}
-    {%endif%}
+  </ul>
+ 
+  
 
-  </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="{% static 'js/saludo.js'%}"></script>
-</html>
+
+{% endblock %}
 
