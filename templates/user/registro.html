@@ -40,7 +40,7 @@
                     {{m}}
                     
                     {%if m.errors%}
-                    {{m.errors}}
+                        {{m.errors}}
                     {%endif%}
 
                 </div>
@@ -48,6 +48,7 @@
                 <hr>
                 <button type="submit" class="btn btn-primary">Registro</button>
             </form>        
+            <a href="{% url 'social:begin' 'facebook' %}"> Registrar con facebook</a>
             </div>
              </div>
             </div> 

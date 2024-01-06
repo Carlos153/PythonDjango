@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-962w!@a%9m0ctc#_1cjl&rrt(k(*xv3@9ro)=9mfx(c6zg(!as
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SOCIAL_AUTH_FACEBOOK_KEY = "1726972734489645"
+SOCIAL_AUTH_FACEBOOK_SECRET = "99d182c0890009ae7f3205435eacba64"
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +122,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIR= ( os.path.join(BASE_DIR, 'static'),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
