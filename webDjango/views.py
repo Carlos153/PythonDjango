@@ -11,6 +11,8 @@ from django.contrib.auth.models import User
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -47,6 +49,9 @@ def salir(request):
     return redirect(login)
 
 def registro(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
     form = Registro(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         usuario = form.save()
